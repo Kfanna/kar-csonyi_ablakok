@@ -95,8 +95,9 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 
   // Aktuális dátum lekérése
-const today = new Date('2023-12-10'); // Szimulált dátum: December 10.
-const currentDay = today.getDate(); // Ez most 10-et ad vissza
+ const today = new Date(); // Aktuális dátum
+  const currentDay = today.getDate(); // Hónap napja (1-31)
+
 
 
 const locations = [
