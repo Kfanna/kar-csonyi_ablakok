@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kispest Kertváros Karácsonyi Ablakok</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Cinzel Decorative', serif;
+      background-color: #031716;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    header {
+      margin-bottom: 20px;
+    }
+
+    header img {
+      max-width: 200px;
+      height: auto;
+    }
+
+    .description {
+      max-width: 600px;
+      margin: 20px auto;
+      font-size: 1.2em;
+      line-height: 1.6;
+    }
+
+    .map-container {
+      width: 100%;
+      max-width: 800px;
+      height: 600px;
+      margin: 20px auto;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+    }
+
+    .author {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.5em;
+      margin-top: 20px;
+      color: #6BA3BE;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Kispest Kertváros Karácsonyi Ablakok logó">
+  </header>
+
+  <div class="description">
+    <h1>Kispest Kertváros Karácsonyi Ablakok</h1>
+    <p>
+      A Kispest Kertváros Karácsonyi Ablakok egy közösségi kezdeményezés, amely során minden adventi napra egy új ünnepi ablak díszíti a környéket. 
+      Célunk, hogy a helyi lakosokat közelebb hozzuk egymáshoz, és közösen teremtsünk ünnepi hangulatot a városrészben.
+    </p>
+    <p>
+      Látogasd meg a térképen kijelölt ablakokat, és élvezd az egyedi történeteket és meséket, amelyeket minden helyszínen megtalálsz!
+    </p>
+    <div class="author">Készítette: Komlósi Fanni</div>
+  </div>
+
+  <div class="map-container">
+    <div id="map"></div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script>
+    const map = L.map('map').setView([47.433657, 19.159633], 16); // Kispest környéki koordináták
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Ablakok helyszínei
+    const locations = [
+      { name: "1. Adventi Ablak", coords: [47.433657418984176, 19.159633806012312], address: "1194 Budapest, Brassó utca 36." },
+      { name: "2. Adventi Ablak", coords: [47.432352797626464, 19.162618944020153], address: "Beszterce utca 36." },
+      { name: "3. Adventi Ablak", coords: [47.436671883866346, 19.1510436967898], address: "1194 Bp Katona József utca 42." },
+      { name: "4. Adventi Ablak", coords: [47.42939493214897, 19.164970567953553], address: "Tülök utca 48" },
+      { name: "5. Adventi Ablak", coords: [47.43258148098002, 19.161773867953713], address: "1194 Hamu utca 38" },
+      { name: "6. Adventi Ablak", coords: [47.43223663964671, 19.159364066102917], address: "1194 Temesvár utca 27." },
+      { name: "7. Adventi Ablak", coords: [47.433177162479495, 19.163015450581614], address: "Beszterce u. 23" },
+      { name: "8. Adventi Ablak", coords: [47.43225077830234, 19.16929602562531], address: "1194 Bp Újvidék utca 6." },
+      { name: "9. Adventi Ablak", coords: [47.43498061674314, 19.164074883297022], address: "1194 Bp, Kolozsvár utca 57." },
+      { name: "10. Adventi Ablak", coords: [47.43187702530329, 19.164945067953706], address: "1194 Budapest Csíky utca 29" }
+    ];
+
+    locations.forEach(location => {
+      L.marker(location.coords).addTo(map)
+        .bindPopup(`<b>${location.name}</b><br>${location.address}`);
+    });
+  </script>
+</body>
+</html>
